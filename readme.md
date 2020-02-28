@@ -18,3 +18,4 @@
 ## Spring uploadfile
 ---
   common 모듈을 이용해서 만든 예제
+  - Ajax 이용한 업로드 구현
