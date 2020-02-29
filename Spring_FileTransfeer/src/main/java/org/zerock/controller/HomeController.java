@@ -37,9 +37,9 @@ public class HomeController {
 		return "home";
 	}
 	
-    @RequestMapping("favicon.ico")
-    @ResponseBody
-    void favicon() {
+    @RequestMapping("**/favicon.ico")
+    String favicon() {
+    	return "forward:/resources/img/favicion.ico";
     }
 	
 }

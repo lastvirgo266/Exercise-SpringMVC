@@ -2,6 +2,8 @@ package org.zerock.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.zerock.VO.AttachFileVO;
@@ -29,6 +34,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Log4j
 public class UploadController {
 	final static String UPLOAD_FOLDER = "D:\\upload";
+	final static String DOWNLOAD_FOLDER = "D:\\download";
 	
 	@GetMapping("/uploadForm")
 	public void uploadForm() {
@@ -151,6 +157,82 @@ public class UploadController {
 		return result;
 		
 	}
+	
+	@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@ResponseBody
+	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent")String userAgent, String fileName){
+		log.info("download file : " + fileName);
+		
+		Resource resource = new FileSystemResource(UPLOAD_FOLDER +"\\" +  fileName);
+		
+		
+		if(resource.exists() == false) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		log.info("resource : " + resource);
+		
+		String resourceName = resource.getFilename();
+		
+		HttpHeaders headers = new HttpHeaders();
+		
+		try {
+			
+			String downloadName = null;
+			 String resourceOriginalName = resourceName.substring(resourceName.indexOf("_")+1);
+			
+			if(userAgent.contains("Trident")) {
+				log.info("IE Browser");
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8").replaceAll("\\+", " ");
+			}
+			else if(userAgent.contains("Edge")) {
+				log.info("Edge Browser");
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8");
+			}
+			else {
+				log.info("Chrome Borwser");
+				downloadName = new String(resourceOriginalName.getBytes("UTF-8"),"ISO-8859-1");
+			}
+			
+			
+			
+			headers.add("Content-Disposition","attachment; filename=" + downloadName);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+		
+	}
+	
+	
+	@PostMapping("/deleteFile")
+	@ResponseBody
+	public ResponseEntity<String> deleteFile(String fileName, String type){
+		log.info("deleteFile : " + fileName);
+		
+		File file;
+		
+		try {
+			file = new File(UPLOAD_FOLDER + "\\" + URLDecoder.decode(fileName, "UTF-8"));
+			file.delete();
+			
+			if(type.equals("image")) {
+				String largeFileName = file.getAbsolutePath().replace("s_", "");
+				log.info("largeFileName : " + largeFileName);
+				
+				file = new File(largeFileName);
+				file.delete();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	
 	
 	//Method
 
