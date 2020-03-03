@@ -34,3 +34,4 @@
   - 특이하게 spring-context.xml 파일을 따로 만들어 관리함
   - web에서 선언해주는 컨텍스트 파일이며 필터를 이용함
   - 스프링 컨텍스트에서 인터셉트 이용해서 로그인처리
+  - 스프링 시큐리티 패스워드 인코더 설정 :  <https://mkyong.com/spring-security/spring-security-password-hashing-example/>

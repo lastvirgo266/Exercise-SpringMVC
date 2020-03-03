@@ -10,17 +10,39 @@
 		
 		<security:intercept-url pattern="/sample/all" access="permitAll"/>
 		
-		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMER')"/>
+		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')"/>
+		
+		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/>
 	
 		<security:form-login/>
+		
+		<security:access-denied-handler error-page ="/accessError"/>
 		
 	
 	</security:http>
 	
 	<security:authentication-manager>
-	
+
+		<security:authentication-provider>
+			<!--  <security:password-encoder ref="encoder" /> --> <!-- password Encoding config --> 
+			<security:user-service>
+				
+				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>
+				
+				<security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN, ROLE_MEMBER"/>
+			
+			</security:user-service>
+		
+		</security:authentication-provider>
 	
 	</security:authentication-manager>
+	
+	
+	
+	 <bean id="encoder" 
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg name="strength" value="11" />
+	  </bean>
 
 
 </beans>
