@@ -35,3 +35,11 @@
   - web에서 선언해주는 컨텍스트 파일이며 필터를 이용함
   - 스프링 컨텍스트에서 인터셉트 이용해서 로그인처리
   - 스프링 시큐리티 패스워드 인코더 설정 :  <https://mkyong.com/spring-security/spring-security-password-hashing-example/>
+  - CSRF 설정완료
+
+
+## SpringJPA-SecurityAuth
+---
+  예제에 나와있는 JDBC를 이용하는 것과 달리 JPA를 이용해서 여러 테스트를 만들어 보는 예제
+  - JPA를 이용하려면 persistence.xml을 만들고 그걸 src/main/resource/META-INF에 넣어주는데 JPA가 그걸 자동으로 인식함
+  - 하이버네이트는 써도되고 안써도 되지만 보통 묶어서 사용함
