@@ -43,3 +43,5 @@
   예제에 나와있는 JDBC를 이용하는 것과 달리 JPA를 이용해서 여러 테스트를 만들어 보는 예제
   - JPA를 이용하려면 persistence.xml을 만들고 그걸 src/main/resource/META-INF에 넣어주는데 JPA가 그걸 자동으로 인식함
   - 하이버네이트는 써도되고 안써도 되지만 보통 묶어서 사용함
+  - 엔티티클래스 만들때 직렬화 인터페이스를 구현해주는 이유 : <https://stackoverflow.com/questions/2020904/when-and-why-jpa-entities-should-implement-serializable-interface> --> 결론부터 말하자면 세션에 기록하거나 다른 인터페이스로 넘기지 않으면 굳이 구현할필요는 없지만 일단 구현해서 나쁠건 없다고 생각한다.
+  - JPA, 하이버네이트 그리고 엔티티와 리포지터리에 대한 작성은 했지만 빈즈 config에서 오류가 발생함
