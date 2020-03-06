@@ -46,3 +46,4 @@
   - 엔티티클래스 만들때 직렬화 인터페이스를 구현해주는 이유 : <https://stackoverflow.com/questions/2020904/when-and-why-jpa-entities-should-implement-serializable-interface> --> 결론부터 말하자면 세션에 기록하거나 다른 인터페이스로 넘기지 않으면 굳이 구현할필요는 없지만 일단 구현해서 나쁠건 없다고 생각한다.
   - JPA, 하이버네이트 그리고 엔티티와 리포지터리에 대한 작성은 했지만 빈즈 config에서 오류가 발생함
   - 에러 해결 --> pom.xml 에서 하이버네이트 버전 수정 및 authoritiesEntity @Id 새로 설정
+  - DAO 정리 완료, 다만 버그 아직 있음

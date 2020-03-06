@@ -7,10 +7,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.zerock.model.UsersEntity;
 
-
-@Repository("userRepository")
+@Repository
 public interface UsersRepository extends JpaRepository<UsersEntity, Long> {
 	
-	UsersEntity findByUserName(String userName);
+	//UsersEntity findByUserName(String userName);
 
 }

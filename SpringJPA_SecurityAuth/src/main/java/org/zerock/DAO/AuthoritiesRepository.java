@@ -11,8 +11,9 @@ import org.springframework.stereotype.Repository;
 import org.zerock.model.AuthoritiesEnitity;
 import org.zerock.model.UsersEntity;
 
+@Repository
 public interface AuthoritiesRepository extends JpaRepository<AuthoritiesEnitity, Long> {
 	
-	List<AuthoritiesEnitity> findByuserEntity(UsersEntity user);
+	//List<AuthoritiesEnitity> findByuserEntity(UsersEntity user);
 	
 }
