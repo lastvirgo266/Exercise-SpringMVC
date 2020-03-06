@@ -44,5 +44,14 @@ public class UsersEntity implements Serializable {
 		this.password = password;
 	}
 	
+	
+	public String getEnabled() {
+		return this.enabled;
+	}
+	
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+	
 
 }

@@ -47,3 +47,4 @@
   - JPA, 하이버네이트 그리고 엔티티와 리포지터리에 대한 작성은 했지만 빈즈 config에서 오류가 발생함
   - 에러 해결 --> pom.xml 에서 하이버네이트 버전 수정 및 authoritiesEntity @Id 새로 설정
   - DAO 정리 완료, 다만 버그 아직 있음
+  - 디버깅 성공, persistence.xml이 작동하지 않아 root-context에 프로퍼티를 박아뒀음

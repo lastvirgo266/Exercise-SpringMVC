@@ -7,9 +7,9 @@
      
     <persistence-unit name="Springjpa">
     
-        <class>org.zerock.model.UsersEntity</class>
-        <class>org.zerock.model.AuthoritiesEntity</class>
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
+            <property name="hibernate.diarect" value="org.hibernate.dialect.H2Dialect" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.hdbm2ddl.auto" value="create"/>
             <property name="hibernate.format_sql" value="true" />
