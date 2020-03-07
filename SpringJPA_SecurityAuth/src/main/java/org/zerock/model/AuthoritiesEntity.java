@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -12,20 +13,20 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="authorities", uniqueConstraints= {
-		@UniqueConstraint(
-		columnNames= {"userName", "authority"})
-})
+@IdClass(AuthoritiesId.class)
+@Table(name="authorities")
 public class AuthoritiesEntity implements Serializable {
 	
 	@Id
-	private String userName;
-	
 	@ManyToOne
-	@MapsId
-	@JoinColumn(name="userName", referencedColumnName = "userName")
+	@JoinColumn(name = "userName")
 	private UsersEntity userEntity;
 
+//	@Id
+//	@Column(nullable = false)
+//	private String userName;
+	
+	@Id
 	@Column(nullable = false)
 	private String authority;
 	
