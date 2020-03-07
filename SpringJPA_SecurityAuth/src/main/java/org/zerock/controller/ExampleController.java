@@ -3,10 +3,8 @@ package org.zerock.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.zerock.DAO.UsersRepository;
-import org.zerock.model.AuthoritiesEnitity;
 import org.zerock.model.UsersEntity;
-import org.zerock.service.RepositoryService;
+import org.zerock.service.UsersService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -15,21 +13,49 @@ import lombok.extern.log4j.Log4j;
 public class ExampleController {
 	
 	@Autowired
-	RepositoryService resRepositoryService;
+	UsersService userService;
 	
-	@Autowired
-	UsersRepository userRepository;
+	@GetMapping("/userget")
+	public void getUser(String userName) {
+		UsersEntity entity = new UsersEntity();
+		entity = userService.getUser("AAA");
+		log.info(entity.getUsername());
+		
+	}
+	
 	
 	@GetMapping("/usersave")
 	public String seveUser(UsersEntity usersEntity) {
-		usersEntity.setUserName("abc");
-		usersEntity.setPassword("sdfs");
+		usersEntity.setUserName("abc2we");
+		usersEntity.setPassword("sdfswew");
 		
 		log.info(usersEntity.getUsername());
 		
-		userRepository.save(usersEntity);
+		userService.createUser(usersEntity);
 		
 		return usersEntity.getUsername();
+	}
+	
+	@GetMapping("/userupdate")
+	public String updateUser(UsersEntity usersEntity) {
+		usersEntity.setUserName("AAA");
+		usersEntity.setPassword("AAA");
+		
+		log.info(usersEntity.getUsername());
+		
+		userService.updateUser(usersEntity);
+		
+		return usersEntity.getUsername();
+	}
+	
+	@GetMapping("/userdelete")
+	public void deleteUser(String userName) {
+		userName = "AAA";
+		
+		log.info(userName);
+		
+		userService.deleteUser(userName);
+		
 	}
 
 }

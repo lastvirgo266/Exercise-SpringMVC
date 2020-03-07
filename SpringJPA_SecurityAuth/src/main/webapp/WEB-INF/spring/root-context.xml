@@ -64,9 +64,11 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
     
-    <tx:annotation-driven/>        
+    
     
     <!-- transactionManager -->
+    <tx:annotation-driven/>        
+    
     <jpa:repositories base-package="org.zerock.DAO"/>
 
 

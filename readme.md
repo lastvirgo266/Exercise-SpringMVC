@@ -48,3 +48,5 @@
   - 에러 해결 --> pom.xml 에서 하이버네이트 버전 수정 및 authoritiesEntity @Id 새로 설정
   - DAO 정리 완료, 다만 버그 아직 있음
   - 디버깅 성공, persistence.xml이 작동하지 않아 root-context에 프로퍼티를 박아뒀음
+  - 서비스 및 리포지터리 수정 --> 그런데 서비스에 @Service 애너테이션 붙여줘도 작동안되서 @AllargsConstructor 박아줬더니됨. 왜 되는지 아직까지 모르겠음.
+  - 예외처리 코드 작성해야함

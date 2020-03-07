@@ -8,12 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
-import org.zerock.model.AuthoritiesEnitity;
+import org.zerock.model.AuthoritiesEntity;
 import org.zerock.model.UsersEntity;
 
 @Repository
-public interface AuthoritiesRepository extends JpaRepository<AuthoritiesEnitity, Long> {
+public interface AuthoritiesRepository extends JpaRepository<AuthoritiesEntity, String> {
 	
-	//List<AuthoritiesEnitity> findByuserEntity(UsersEntity user);
+	
 	
 }
