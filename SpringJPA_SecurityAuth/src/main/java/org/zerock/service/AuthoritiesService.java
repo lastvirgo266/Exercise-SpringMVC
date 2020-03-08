@@ -8,10 +8,9 @@ public interface AuthoritiesService {
 	
 	//Read
 	public List<AuthoritiesEntity> getAuthorities(String userName);
-	public List<AuthoritiesEntity> getAllUsers();
 	
 	//Create
-	public void saveUser(AuthoritiesEntity authoritiesEntity);
+	public void saveAuthority(AuthoritiesEntity authoritiesEntity);
 	
 	//Update
 	public void updateAuthority(AuthoritiesEntity authoritiesEntity);
