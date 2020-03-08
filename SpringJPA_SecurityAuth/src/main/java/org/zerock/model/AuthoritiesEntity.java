@@ -7,10 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import javax.persistence.ForeignKey;
 
 import lombok.extern.log4j.Log4j;
 
@@ -22,7 +25,7 @@ public class AuthoritiesEntity implements Serializable {
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name = "userName")
+	@JoinColumn(name="userName", referencedColumnName = "userName", foreignKey = @ForeignKey(name="FK_COMPANY__ROUTE"))
 	private UsersEntity userName;
 	
 	@Id
