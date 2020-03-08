@@ -20,11 +20,7 @@ public class AuthoritiesEntity implements Serializable {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "userName")
-	private UsersEntity userEntity;
-
-//	@Id
-//	@Column(nullable = false)
-//	private String userName;
+	private UsersEntity userName;
 	
 	@Id
 	@Column(nullable = false)
